@@ -43,3 +43,21 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'valid_attribute'
+  gem 'shoulda'
+  gem 'factory_girl'
+
+  gem 'launchy'
+  gem 'pry-rails'
+end
+
+gem 'simple_form'
+
+gem 'devise'
+
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+                              :github => 'anjlab/bootstrap-rails'
