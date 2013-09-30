@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
       :about_me, 
       :current_company]
   end
+
+  def after_sign_in_path_for(user)
+    user_path(user)
+  end
 end
