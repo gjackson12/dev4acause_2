@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="text-center">
+      <h2>Add your Nonprofit</h2>
+      <hr>
+      <p>Tell us about your nonprofit. The more information you can share the better. Developers want to know who you are and what you do that makes a difference.</p>
+    </div>
+
+<%= simple_form_for @nonprofit do |f| %>
+    <div class="form-inputs form-box">
+      <%= f.input :name %>
+      <%= f.input :ein_num, label: 'EIN number' %>
+      <%= f.input :city, label: 'City/town' %>
+      <%= f.input :state, collection: State::STATES, include_blank: 'Select...',required: true, label: "State" %>
+      <%= f.input :description_mission, label:'Mission description' %>
+      <%= f.input :cause, collection: Cause::CAUSES, include_blank: 'Select...',required: true, label: "Cause area" %>
+      <%= f.input :date_founded, label: 'Date founded' %>
+      <%= f.input :phone_number %>
+      <%= f.input :fax_number %>
+      <%= f.input :street_address %>
+      <%= f.input :street_address_2 %>
+      <%= f.input :zipcode %>
+      <%= f.input :email_address %>
+      <%= f.input :website_string, label: 'Website' %>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn-primary' %>
+    </div>
+    <% end %>
+
+  </div>
+</div>
