@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="text-center">
+      <h2>Add an Opportunity</h2>
+      <hr>
+    </div>
+
+<%= simple_form_for [@opportunity.nonprofit,@opportunity] do |f| %>
+    <div class="form-inputs form-box">
+      <%= f.input :headline %>
+      <%= f.input :description, label: 'Opportunity description' %>
+      <%= f.input :current_stack, label: 'Current stack' %>
+      <%= f.input :application_info, label: 'How to apply' %>
+      <%= f.input :street_address %>
+      <%= f.input :city, label: "City/town" %>
+      <%= f.input :state, collection: State::STATES, include_blank: 'Select...',required: true, label: "State" %>
+      <%= f.input :zipcode %>
+      <%= f.input :duration %>
+      <%= f.input :time_commitment %>
+      <%= f.input :start_date %>
+      <%= f.input :end_date %>
+      <%= f.input :extra_details %>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn-primary' %>
+    </div>
+    <% end %>
+
+  </div>
+</div>

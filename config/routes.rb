@@ -7,7 +7,10 @@ Dev4acause::Application.routes.draw do
 
   resources :users, only:[:show]
 
-  resources :nonprofits
+  resources :nonprofits do
+    resources :opportunities
+  end
+
   # You can have the root of your site routed with "root"
   root 'home#index'
 
