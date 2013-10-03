@@ -23,7 +23,7 @@ feature 'user creates non-profit', %Q{
     fill_in "Email", with: user.email 
     fill_in "Password", with: user.password
     click_button 'Sign in'
-    click_link 'Add your Nonprofit'
+    click_link 'Add a Nonprofit'
 
     fill_in 'Name', with: 'American Red Cross'
     fill_in 'EIN number', with: '1-1111111'
@@ -55,7 +55,7 @@ feature 'user creates non-profit', %Q{
     fill_in "Email", with: user.email 
     fill_in "Password", with: user.password
     click_button 'Sign in'
-    click_link 'Add your Nonprofit'
+    click_link 'Add a Nonprofit'
     click_button 'Create Nonprofit'
 
     within ".nonprofit_name" do
@@ -92,7 +92,7 @@ feature 'user creates non-profit', %Q{
     fill_in "Email", with: user.email 
     fill_in "Password", with: user.password
     click_button 'Sign in'
-    click_link 'Add your Nonprofit'
+    click_link 'Add a Nonprofit'
 
     fill_in 'Name', with: 'American Red Cross'
     fill_in 'EIN number', with: '1-21111111'

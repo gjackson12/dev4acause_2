@@ -21,6 +21,7 @@ feature 'user creates non-profit', %Q{
     nonprofit = FactoryGirl.create(:nonprofit)
     nonprofit.user_id = user.id
     prev_opportunities_count = user.nonprofit.opportunities.count
+    pry-rails
     visit new_user_session_path
     fill_in "Email", with: user.email 
     fill_in "Password", with: user.password
@@ -67,8 +68,6 @@ feature 'user creates non-profit', %Q{
     fill_in 'Extra details', with: 'Remote help would be fine as well'
     fill_in 'Estimated project duration', with: 'Approximately 3 weeks'
     fill_in 'Time commitment', with: 'Approximately 10 hours a week'
-    fill_in 'Estimated Start date', with: '07/12/2011'
-    fill_in 'Estimated End date', with: '07/30/2011'
     fill_in 'How to apply', with: 'Please send an e-mail to john@redcross.org.
       Also please submit an application with your portfolio by following this
       link: http://www.jobvite.com/fakeapplication'

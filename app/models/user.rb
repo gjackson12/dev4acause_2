@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  has_one :nonprofit, :dependent => :destroy, inverse_of: :user
+  has_many :nonprofits, :dependent => :destroy, inverse_of: :user
 
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -18,4 +18,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def member_since
+    formatted_date = self.created_at.to_date
+    formatted_date = formatted_date.to_formatted_s(:long)
+  end
 end

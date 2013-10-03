@@ -15,7 +15,7 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.wrapper tag: 'div', class: 'controls' do |input|
+    b.wrapper tag: 'div', class: 'form-control' do |input|
       input.wrapper tag: 'div', class: 'input-prepend' do |prepend|
         prepend.use :input
       end
@@ -28,7 +28,7 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.wrapper tag: 'div', class: 'controls' do |input|
+    b.wrapper tag: 'div', class: 'form-control' do |input|
       input.wrapper tag: 'div', class: 'input-append' do |append|
         append.use :input
       end

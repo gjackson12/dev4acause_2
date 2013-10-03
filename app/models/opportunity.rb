@@ -1,6 +1,11 @@
 class Opportunity < ActiveRecord::Base
   belongs_to :nonprofit, inverse_of: :opportunities
 
+  has_many :opportunity_skills
+  has_many :skills, through: :opportunity_skills
+
+  accepts_nested_attributes_for :opportunity_skills
+
   validates_presence_of :description
   validates_presence_of :current_stack
   validates_presence_of :headline

@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/Nerian/bootstrap-datepicker-rails.git
+  revision: 42579640e693f832bdffd507041644f9d93a624a
+  specs:
+    bootstrap-datepicker-rails (1.1.1.8)
+      railties (>= 3.0)
+
+GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
   revision: 583659441aa843e47f8002c562c2911500b2fd3e
   specs:
@@ -174,6 +181,7 @@ PLATFORMS
 
 DEPENDENCIES
   anjlab-bootstrap-rails!
+  bootstrap-datepicker-rails!
   capybara
   coffee-rails (~> 4.0.0)
   devise

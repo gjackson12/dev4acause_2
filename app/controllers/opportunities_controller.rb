@@ -8,10 +8,14 @@ class OpportunitiesController < ApplicationController
 
     if @opportunity.save
       flash[:notice] = 'Your opportunity has been created successfully.'
-      redirect_to nonprofit_path(nonprofit, @opportunity)
+      redirect_to nonprofit_opportunity_path(nonprofit, @opportunity)
     else
       render :new
     end
+  end
+
+  def show
+    @opportunity = nonprofit.opportunities.find(params[:id])
   end
 
   protected
@@ -28,14 +32,15 @@ class OpportunitiesController < ApplicationController
       :city,
       :state,
       :extra_details,
-      :duraton,
+      :duration,
       :time_commitment,
       :start_date,
       :end_date,
       :headline,
-      :zip_code,
+      :zipcode,
       :nonprofit_id,
-      :application_info
+      :application_info,
+      skill_ids: [] 
       )
   end
 end

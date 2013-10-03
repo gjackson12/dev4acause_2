@@ -5,7 +5,7 @@ class NonprofitsController < ApplicationController
 
   def create
     @nonprofit = Nonprofit.new
-    @nonprofit = current_user.build_nonprofit(nonprofit_params)
+    @nonprofit = current_user.nonprofits.build(nonprofit_params)
 
     if @nonprofit.save
       flash[:notice] = 'Your Nonprofit has been created successfully.'

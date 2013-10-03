@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-3 col-md-offset-1">
+    <div id="profile_image">
+      <%= link_to image_tag(gravatar_url(current_user)), "http://gravatar.com/emails/" %>
+    </div>
+    <h2><%= "#{@profile.first_name} #{@profile.last_name}" %></h2>
+    <div id="key-details">
+        <p>
+          <span class="glyphicon glyphicon-globe"></span>
+          <%= " #{@profile.city}, #{@profile.state}" %>
+        </p>
+        <p>
+          <span class="glyphicon glyphicon-envelope"></span>
+          <%= link_to " #{@profile.email}", "mailto:#{@profile.email}" %>
+        </p>
+        <p>
+          <span class="glyphicon glyphicon-time"></span>
+          <span> Joined on,</span>
+          <%= " #{@profile.member_since}" %>
+        </p>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>About Me</h3>
+      </div>
+      <div class="panel-body">
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 pull-right">
+    <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Profile", profile_path(current_user), :class =>  "btn btn-default" %>
+    <%= link_to raw('<i class="glyphicon glyphicon-plus"></i>') + " Create a Nonprofit", new_nonprofit_path, :class =>  "btn btn-default" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3 col-md-offset-1">
+  </div>
+</div>

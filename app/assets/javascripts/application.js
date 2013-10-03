@@ -17,3 +17,4 @@
 
 // Include all twitter's javascripts
 //= require twitter/bootstrap
+//= require bootstrap-datepicker
