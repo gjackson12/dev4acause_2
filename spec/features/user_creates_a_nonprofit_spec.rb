@@ -23,7 +23,7 @@ feature 'user creates non-profit', %Q{
     fill_in "Email", with: user.email 
     fill_in "Password", with: user.password
     click_button 'Sign in'
-    click_link 'Add a Nonprofit'
+    click_link 'Create a Nonprofit'
 
     fill_in 'Name', with: 'American Red Cross'
     fill_in 'EIN number', with: '1-1111111'
@@ -45,7 +45,7 @@ feature 'user creates non-profit', %Q{
     click_button 'Create Nonprofit'
 
     expect(Nonprofit.count).to eql(prev_nonprofit_count + 1)
-    expect(user.nonprofit).to eql(Nonprofit.last)
+    expect(user.nonprofits.first).to eql(Nonprofit.last)
   end
 
   scenario 'does not specify required information' do
@@ -55,7 +55,7 @@ feature 'user creates non-profit', %Q{
     fill_in "Email", with: user.email 
     fill_in "Password", with: user.password
     click_button 'Sign in'
-    click_link 'Add a Nonprofit'
+    click_link 'Create a Nonprofit'
     click_button 'Create Nonprofit'
 
     within ".nonprofit_name" do
@@ -92,7 +92,7 @@ feature 'user creates non-profit', %Q{
     fill_in "Email", with: user.email 
     fill_in "Password", with: user.password
     click_button 'Sign in'
-    click_link 'Add a Nonprofit'
+    click_link 'Create a Nonprofit'
 
     fill_in 'Name', with: 'American Red Cross'
     fill_in 'EIN number', with: '1-21111111'

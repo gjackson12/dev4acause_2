@@ -20,8 +20,6 @@ feature 'user creates non-profit', %Q{
     user = FactoryGirl.create(:user)
     nonprofit = FactoryGirl.create(:nonprofit)
     nonprofit.user_id = user.id
-    prev_opportunities_count = user.nonprofit.opportunities.count
-    pry-rails
     visit new_user_session_path
     fill_in "Email", with: user.email 
     fill_in "Password", with: user.password
@@ -73,7 +71,7 @@ feature 'user creates non-profit', %Q{
       link: http://www.jobvite.com/fakeapplication'
     click_button 'Create Opportunity'
 
-    expect(user.nonprofit.opportunities.count).to eql(prev_opportunities_count + 1)
+    expect(user.nonprofits.first.opportunities.count).to eql(1)
   end
 
 end

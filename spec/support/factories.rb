@@ -29,4 +29,12 @@ FactoryGirl.define do
     email_address 'john@americanredcross.com'
     website_string 'http://www.redcross.org'
   end
+
+  factory :opportunity do
+    description 'some text'
+    current_stack 'some other text'
+    headline 'some fun job'
+    nonprofit
+    application_info 'email'
+  end
 end

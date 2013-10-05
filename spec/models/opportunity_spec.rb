@@ -82,4 +82,65 @@ describe Opportunity do
       by following this link: http://www.jobvite.com/fakeapplication') }
   it { should_not have_valid(:application_info).when(nil, "") }
 
+  describe '.search' do
+    describe 'by description' do
+      before :each do
+        @target = FactoryGirl.create(:opportunity, 
+          description: 'foo bar baz')
+        @other = FactoryGirl.create(:opportunity,
+          description: 'something else')
+      end
+
+      it 'matches exactly' do
+        results = Opportunity.search('foo bar baz')
+        expect(results).to include(@target)
+        expect(results).to_not include(@other)
+      end
+
+      it 'matches partially' do
+        results = Opportunity.search('bar')
+        expect(results).to include(@target)
+        expect(results).to_not include(@other)
+      end
+
+      it 'is case insensitive' do
+        results = Opportunity.search('FoO bAr BAZ')
+        expect(results).to include(@target)
+        expect(results).to_not include(@other)
+      end
+
+      it 'ignores order of words' do
+        results = Opportunity.search('bar baz foo')
+        expect(results).to include(@target)
+        expect(results).to_not include(@other)
+      end
+    end
+
+    it 'matches multiple fields' do
+      target = FactoryGirl.create(:opportunity,
+        description: 'foodler', headline: 'batmitzvah')
+      other = FactoryGirl.create(:opportunity,
+        description: 'bananas', headline: 'oranges')
+
+      results = Opportunity.search('foodler batmitzvah')
+      expect(results).to include(target)
+      expect(results).to_not include(other)
+    end
+
+    it 'matches fields on other models'
+    it 'matches pluralized words'
+    
+    it 'handles null values' do
+      target = FactoryGirl.create(:opportunity,
+        description: 'gfkjgfsdgf', extra_details: 'foodler')
+      other = FactoryGirl.create(:opportunity,
+        description: 'blah blah', extra_details: nil)
+
+      results = Opportunity.search('foodler')
+      expect(results).to include(target)
+    end
+  end
+
+  
+
 end

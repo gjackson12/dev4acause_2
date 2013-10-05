@@ -1,37 +1,80 @@
 <div class="row">
-  <div class="col-md-5 col-md-offset-3">
+  <div class="col-md-4 col-md-offset-4">
     <div class="text-center">
       <h2>Add an Opportunity</h2>
       <hr>
     </div>
 
 <%= simple_form_for [@opportunity.nonprofit,@opportunity] do |f| %>
-    <div class="form-inputs form-box">
-      <%= f.input :headline %>
-      <%= f.input :description, label: 'Opportunity description' %>
-      <%= f.input :current_stack, label: 'Current stack' %>
-      <%= f.association :skills, as: :check_boxes %>
-      <%= f.input :application_info, label: 'How to apply' %>
-      <%= f.input :street_address %>
-      <%= f.input :city, label: "City/town" %>
-      <%= f.input :state, collection: State::STATES, include_blank: 'Select...',required: true, label: "State" %>
-      <%= f.input :zipcode %>
-      <%= f.input :duration %>`
-      <%= f.input :time_commitment %>
-      <%= f.input :start_date, as: :string, input_html: { class: "datepicker"} %>
-      <%= f.input :end_date %>
-      <%= f.input :extra_details %>
-
-    <div class="form-actions">
-      <%= f.button :submit, class: 'btn-primary' %>
-    </div>
-    <% end %>
+      <div class="form-inputs form-box">
+        <%= f.input :headline %>
+        <%= f.input :description, label: 'Opportunity description' %>
+        <%= f.input :current_stack, label: 'Current stack' %>
+        <%= f.association :skills, input_html: { class: "chosen-select" }  %>
+        <%= f.input :application_info, label: 'How to apply' %>
+        <%= f.input :street_address %>
+      </div>
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-2 col-md-offset-4">
+    <div class="form-inputs form-box">
+      <%= f.input :city, label: "City/town" %>
+    </div>
+  </div>
+  <div class="col-md-2">
+      <%= f.input :state, collection: State::STATES, include_blank: 'Select...',required: true, label: "State", input_html: { class: "chosen-select" } %>
+  </div>
+</div>
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.datepicker').datepicker();
-  })
-</script>
+<div class="row">
+  <div class="col-md-2 col-md-offset-4">
+    <%= f.input :zipcode %>
+  </div>
+  <div class="col-md-2"> 
+    <%= f.input :duration %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <%= f.input :time_commitment %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2 col-md-offset-4">
+    <%= f.input :start_date, as: :string, input_html: { class: "datepicker"} %>
+  </div>
+  <div class="col-md-2">
+    <%= f.input :end_date, as: :string, input_html: { class: "datepicker"} %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <%= f.input :extra_details %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2 col-md-offset-4">
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn-primary' %>
+    </div>
+  </div>
+    <% end %>
+</div>
+
+<% content_for :extra_footer do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.datepicker').datepicker({
+        format: 'yyyy-MM-dd'
+      });
+    })
+
+    $(".chosen-select").chosen()
+  </script>
+<% end %>

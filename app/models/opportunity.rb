@@ -14,4 +14,9 @@ class Opportunity < ActiveRecord::Base
 
   validates_format_of :zipcode, 
     with: /\A\d{5}(-\d{4})?\z/i, allow_blank:true
+
+  def self.search(query)
+    where("to_tsvector(coalesce(description, '') || ' ' || coalesce(headline,'') || ' ' || coalesce(extra_details, '')) @@ plainto_tsquery(?)", query)
+  end
+
 end

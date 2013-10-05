@@ -100,11 +100,10 @@
   </nav>
   
   <div>
-    <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
   </div>
 
 <%= yield %>
-
+<%= yield :extra_footer %>
 </body>
 </html>
