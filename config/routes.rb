@@ -1,11 +1,12 @@
 Dev4acause::Application.routes.draw do
+  
+  resources :profiles
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   resources :home, only: [:index]
-
-  resources :profiles
 
   resources :nonprofits do
     resources :opportunities

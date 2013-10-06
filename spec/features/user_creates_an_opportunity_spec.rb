@@ -6,7 +6,7 @@ feature 'user creates non-profit', %Q{
   So that I can begin to post opportunities
 } do
 
-  # Acceptance Criteria
+# Acceptance Criteria
 # * I must specify a name, ein_number, state, city, description mission, and
 #   cause area
 # * I am able to specify a date founded, phone number,fax number, street address,

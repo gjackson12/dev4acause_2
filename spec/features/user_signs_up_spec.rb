@@ -21,7 +21,8 @@ feature 'user signs up for the site', %Q{
   scenario 'specifies valid information' do
     prev_user_count = User.count
     visit new_user_registration_path
-    fill_in "Email", with: "john.smith@americanredcross.com"
+    email = "john.smith@americanredcross.com"
+    fill_in "Email", with: email
     fill_in "Password", with: "bondra12", :match => :prefer_exact
     fill_in "Verify password", with: "bondra12", :match => :prefer_exact
     fill_in "First name", with: "John"
@@ -30,7 +31,7 @@ feature 'user signs up for the site', %Q{
     select('District of Columbia', :from => 'State')
     fill_in "Postal code", with: "20009"
     click_button 'Sign up'
-    expect(page).to have_content('successfully')
+    expect(page).to have_content(email)
     expect(User.count).to eql(prev_user_count + 1)
   end
 
