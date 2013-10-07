@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-3 col-md-offset-1">
     <div id="profile_image">
-      <%= link_to image_tag(gravatar_url(current_user)), "http://gravatar.com/emails/" %>
+      <%= link_to image_tag(gravatar_url(view_user)), "http://gravatar.com/emails/" %>
     </div>
     <h2><%= "#{@profile.first_name} #{@profile.last_name}" %></h2>
     <div id="key-details">
@@ -16,28 +16,108 @@
         <p>
           <span class="glyphicon glyphicon-time"></span>
           <span> Joined on,</span>
-          <%= " #{@profile.member_since}" %>
+          <%= " #{@profile.date_formatter(@profile.created_at)}" %>
         </p>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>About Me</h3>
-      </div>
-      <div class="panel-body">
-        
+
+<div class="col-md-5">
+  <ul id="myTab" class="nav nav-tabs">
+    <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+    <li ><a href="#nonprofits" data-toggle="tab">My Nonprofits</a></li>
+  </ul>
+  
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="profile">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>About Me</h3>
+        </div>
+        <div class="panel-body">
+          <% if @profile.birthday.present? %>
+            <dl>
+              <dt class="about-me-labels">Birthday</dt>
+              <dd><%= @profile.date_formatter(@profile.birthday) %></dd>
+            </dl>
+          <% else %>
+            <p>
+              No information available.
+            </p>
+          <% end %>
+
+          <% if @profile.about_me.present? %>
+            <dl>
+              <dt class="about-me-labels">Brief Introduction</dt>
+              <dd><%= @profile.about_me %></dd>
+            </dl>
+          <% else %>
+          <p>
+            No information available.
+          </p>
+          <% end %>
+
+          <% if @profile.skills.present? %>
+            <dl>
+              <dt class="about-me-labels">Skills</dt>
+            <% @profile.skills.each do |skill| %>
+                <span>
+                  <%= skill.name %>
+                </span>
+            <%- end -%>
+            </dl>
+          <% else %>
+            <p>
+               No information available.
+            </p>
+          <% end %>
+
+          <% if @profile.reason_here.present? %>
+           <dl>
+              <dt class="about-me-labels">Reason I joined Dev4aCause</dt>
+              <dd><%= @profile.reason_here %></dd>
+            </dl>
+          <% else %>
+            <p>
+              No information available.
+            </p>
+          <% end %>
+
+          <% if @profile.current_company.present? %>
+            <dl>
+              <dt class="about-me-labels">Current Company</dt>
+              <dd><%= @profile.current_company %></dd>
+            </dl>
+          <% else %>
+            <p>
+              No information available.
+            </p>
+          <% end %>
+
+          <% if @profile.education.present? %>
+            <dl>
+              <dt class="about-me-labels">Education</dt>
+              <dd><%= @profile.education %></dd>
+            </dl>
+          <% else %>
+            <p>
+              No information available.
+            </p>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="col-md-3 pull-right">
-    <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Profile", edit_profile_path(current_user), :class =>  "btn btn-default" %>
-    <%= link_to raw('<i class="glyphicon glyphicon-plus"></i>') + " Create a Nonprofit", new_nonprofit_path, :class =>  "btn btn-default" %>
+    <div class="tab-pane fade" id="nonprofits">
+      <%= render "profiles/users_nonprofits", profile: @profile %>
+    </div>
+
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-3 col-md-offset-1">
+  <div class="col-md-3 pull-right">
+    <% if view_user == current_user %>
+      <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Profile", edit_profile_path(current_user), :class =>  "btn btn-default" %>
+      <%= link_to raw('<i class="glyphicon glyphicon-plus"></i>') + " Create a Nonprofit", new_nonprofit_path, :class =>  "btn btn-default" %>
+    <% end %>
   </div>
 </div>

@@ -8,7 +8,11 @@
   <%= f.input :state, collection: State::STATES, include_blank: 'Select...',required: true, label: "State", input_html: { class: "chosen-select" } %>
   <%= f.input :zipcode %>
   <%= f.input :about_me %>
+  <%= f.input :reason_here %>
+  <%= f.association :skills, input_html: { class: "chosen-select" }  %>
+  <%= f.input :education %>
   <%= f.input :current_company %>
+  <%= f.input :birthday, as: :string, input_html: { class: "datepicker"} %>
   <%= f.button :submit, 'Update Profile' %>
 <% end %> 
   </div>

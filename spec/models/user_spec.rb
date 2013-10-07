@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe User do
 
+  it { should have_many(:skills).through(:user_skills) }
+
   it { should have_many(:nonprofits) }
 
   it { should validate_presence_of(:first_name) }

@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead class="table-head">
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Details</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% if profile.nonprofits.present? %>
+      <% profile.nonprofits.each do |nonprofit| %>
+      <tr>
+        <td><%= nonprofit.name %></td>
+        <td><%= nonprofit.description_mission %></td>
+        <td><%= link_to "View", nonprofit_path(nonprofit) %></td>
+      </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>There are no nonprofits to show.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

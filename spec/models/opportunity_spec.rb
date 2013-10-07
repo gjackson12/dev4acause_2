@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Opportunity do
   it { should belong_to :nonprofit }
+  it { should have_many(:skills).through(:opportunity_skills) }
 
   it { validate_presence_of(:description) }
   it { validate_presence_of(:current_stack) }
@@ -75,6 +76,8 @@ describe Opportunity do
 
   it { should have_valid(:zipcode).when('20009', '20009-8523') }
   it { should_not have_valid(:zipcode).when('10000000000000000', 'foo') }
+
+  it { should ensure_inclusion_of(:state).in_array(State::STATES) }
 
   it { should have_valid(:application_info).when(
       'Please send an e-mail to john@redcross.org.

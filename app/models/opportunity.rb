@@ -15,6 +15,9 @@ class Opportunity < ActiveRecord::Base
   validates_format_of :zipcode, 
     with: /\A\d{5}(-\d{4})?\z/i, allow_blank:true
 
+  validates_inclusion_of :state, 
+    in: State::STATES, allow_blank:true
+
   def self.search(query)
     where("to_tsvector(coalesce(description, '') || ' ' || coalesce(headline,'') || ' ' || coalesce(extra_details, '')) @@ plainto_tsquery(?)", query)
   end

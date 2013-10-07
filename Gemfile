@@ -50,6 +50,7 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'shoulda'
   gem 'factory_girl'
+  gem 'quiet_assets'
 
   gem 'launchy'
   gem 'pry-rails'

@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
-  
+  helper_method :view_user
+
   def show
     @profile = User.find(params[:id])
   end
@@ -17,6 +18,10 @@ class ProfilesController < ApplicationController
       end
   end
 
+  def view_user
+    @view_user = User.find(params[:id])
+  end
+
   private
 
   def user_params
@@ -28,7 +33,11 @@ class ProfilesController < ApplicationController
       :state,
       :zipcode,
       :about_me,
-      :current_company
+      :current_company,
+      :birthday,
+      :education,
+      :reason_here,
+      skill_ids: []
       )
   end
 

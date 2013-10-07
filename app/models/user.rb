@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  has_many :user_skills
+  has_many :skills, through: :user_skills
+
   has_many :nonprofits, :dependent => :destroy, inverse_of: :user
 
   validates_presence_of :first_name
@@ -19,8 +22,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  def member_since
-    formatted_date = self.created_at.to_date
+  def date_formatter(date)
+    formatted_date = date.to_date
     formatted_date = formatted_date.to_formatted_s(:long)
   end
+  
 end
