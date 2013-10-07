@@ -1,4 +1,4 @@
-class Cause < ActiveRecord::Base
+class Cause
 
   CAUSES = [
     'Advocacy & Human Rights',

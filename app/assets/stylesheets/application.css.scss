@@ -1,6 +1,7 @@
 // import original bootstrap
 @import "twitter/bootstrap";
 @import "custom";
+@import "chosen";
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,4 +14,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require bootstrap-datepicker
+ *= require chosen.jquery.min
  */
+

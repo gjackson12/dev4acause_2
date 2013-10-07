@@ -1,6 +1,7 @@
 class Nonprofit < ActiveRecord::Base
 
   belongs_to :user
+  has_many :opportunities, :dependent => :destroy, inverse_of: :nonprofit 
 
   validates_presence_of :name
   validates_presence_of :ein_num

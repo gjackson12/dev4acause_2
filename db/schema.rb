@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930033626) do
+ActiveRecord::Schema.define(version: 20131006204850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,45 @@ ActiveRecord::Schema.define(version: 20130930033626) do
     t.integer  "user_id"
   end
 
+  create_table "opportunities", force: true do |t|
+    t.text     "description",      null: false
+    t.text     "current_stack",    null: false
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "state"
+    t.text     "extra_details"
+    t.string   "duration"
+    t.string   "time_commitment"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "headline",         null: false
+    t.string   "zipcode"
+    t.integer  "nonprofit_id",     null: false
+    t.text     "application_info", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "opportunity_skills", force: true do |t|
+    t.integer  "skill_id",       null: false
+    t.integer  "opportunity_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "skills", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_skills", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "skill_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -56,6 +95,9 @@ ActiveRecord::Schema.define(version: 20130930033626) do
     t.string   "zipcode",                             null: false
     t.text     "about_me"
     t.string   "current_company"
+    t.date     "birthday"
+    t.string   "education"
+    t.text     "reason_here"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

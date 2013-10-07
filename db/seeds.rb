@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+skills = [
+  "Java", 
+  "Ruby", 
+  "C++"
+]
+
+#Populate Skills Table
+skills.each do |skill|
+  Skill.create(name: skill) if Skill.where(name: skill).empty?
+end
