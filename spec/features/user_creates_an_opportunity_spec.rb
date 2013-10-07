@@ -18,19 +18,18 @@ feature 'user creates non-profit', %Q{
 
   scenario 'specifies valid information' do
     user = FactoryGirl.create(:user)
-    nonprofit = FactoryGirl.create(:nonprofit)
-    nonprofit.user_id = user.id
+    nonprofit = FactoryGirl.create(:nonprofit, user: user)
     visit new_user_session_path
     fill_in "Email", with: user.email 
     fill_in "Password", with: user.password
     click_button 'Sign in'
-    click_link 'American Red Cross'
-    click_link 'New Opportunity'
+    
+    visit new_nonprofit_opportunity_path(nonprofit)
 
     fill_in 'Headline', with: 
       'Seeking Digital Designer Volunteers for Non-Profit Theater 
        that serves Homeless Children'
-    fill_in 'Opportunity Description', with:  'This role will be assisting in extending a campaign through numerous 
+    fill_in 'Opportunity description', with: 'This role will be assisting in extending a campaign through numerous 
       digital channels as well as concepting in the process. Designers MUST be 
       trained conceptually, not just in design techniques. It will involve 
       considerable work with senior members to flesh out and bring to life 
@@ -69,9 +68,47 @@ feature 'user creates non-profit', %Q{
     fill_in 'How to apply', with: 'Please send an e-mail to john@redcross.org.
       Also please submit an application with your portfolio by following this
       link: http://www.jobvite.com/fakeapplication'
-    click_button 'Create Opportunity'
+    save_and_open_page
+    click_on 'Create Opportunity'
 
-    expect(user.nonprofits.first.opportunities.count).to eql(1)
+    expect(nonprofit.opportunities.count).to eql(1)
+  end
+
+  scenario 'does not specify required information' do
+    user = FactoryGirl.create(:user)
+    prev_nonprofit_count = Nonprofit.count
+    visit new_user_session_path
+    fill_in "Email", with: user.email 
+    fill_in "Password", with: user.password
+    click_button 'Sign in'
+    click_link 'Create a Nonprofit'
+    click_button 'Create Nonprofit'
+
+    within ".nonprofit_name" do
+        expect(page).to have_content "can't be blank"
+    end
+
+    within ".nonprofit_ein_num" do
+        expect(page).to have_content "can't be blank"
+    end
+
+    within ".nonprofit_city" do
+        expect(page).to have_content "can't be blank"
+    end
+
+    within ".nonprofit_state" do
+        expect(page).to have_content "can't be blank"
+    end
+
+    within ".nonprofit_description_mission" do
+        expect(page).to have_content "can't be blank"
+    end
+
+    within ".nonprofit_cause" do
+        expect(page).to have_content "can't be blank"
+    end
+    
+    expect(Nonprofit.count).to eql(prev_nonprofit_count)
   end
 
 end

@@ -14,7 +14,7 @@ feature 'user edits profile', %Q{
 # * If I enter all specified information in a valid format my profile should be updated
 
   scenario 'specifies valid information' do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, first_name: "Todd")
     first_name = 'Graham'
     visit new_user_session_path
     fill_in "Email", with: user.email 
@@ -24,52 +24,30 @@ feature 'user edits profile', %Q{
     visit edit_profile_path(user.id)
 
     fill_in 'First name', with: first_name
-    fill_in 'Last name', with: 'Jackson'
-    fill_in 'City/town', with: 'Miami'
-    select('Florida', :from => 'State')
-    fill_in 'Zipcode', with: '22032'
-    fill_in 'About me', with: "
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
-      ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
-      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-      occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit 
-      anim id est laborum."
-    fill_in 'Current company', with: 'LivingSocial'
+  
     click_on 'Update Profile'
 
-    # expect(user.first_name).to eql(first_name) <---- need to figure out what the issue is
+    expect(user.reload.first_name).to eql(first_name)
   end
 
-    # scenario 'does not specify required information' do
-    #    user = FactoryGirl.create(:user)
-    #    visit new_user_session_path
-    #    fill_in "Email", with: user.email 
-    #    fill_in "Password", with: user.password
-    #    click_button 'Sign in'
-    #    click_link 'Edit Your Profile'
+  scenario 'does not specify required information' do
+    user = FactoryGirl.create(:user)
+    visit new_user_session_path
+    fill_in "Email", with: user.email 
+    fill_in "Password", with: user.password
+    click_button 'Sign in'
+    click_link 'Edit Your Profile'
 
-    #    within ".user_first_name" do
-    #        expect(page).to have_content "can't be blank"
-    #    end
+    fill_in 'First name', with: ""
 
-    #    within ".user_last_name" do
-    #        expect(page).to have_content "can't be blank"
-    #    end
+    click_on 'Update Profile'
 
-    #    within ".user_city" do
-    #        expect(page).to have_content "can't be blank"
-    #    end
+    user = user.reload
 
-    #    within ".user_state" do
-    #        expect(page).to have_content "can't be blank"
-    #    end
+    within ".user_first_name" do
+      expect(page).to have_content "can't be blank"
+    end
 
-    #    within ".user_zipcode" do
-    #        expect(page).to have_content "can't be blank"
-    #    end
-
-    # end
+  end
 
 end

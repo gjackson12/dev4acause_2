@@ -19,6 +19,10 @@ class NonprofitsController < ApplicationController
     @nonprofit = Nonprofit.find(params[:id])
   end
 
+  def edit
+    @nonprofit = Nonprofit.find(params[:id])
+  end
+
   private
 
   def nonprofit_params
