@@ -1,13 +1,23 @@
 Dev4acause::Application.routes.draw do
+  
+  resources :profiles
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   resources :home, only: [:index]
 
-  resources :users, only:[:show]
+  resources :nonprofits do
+    resources :opportunities
+  end
 
-  resources :nonprofits
+  resources :opportunities, only: [] do
+    get 'search', on: :collection
+  end
+
+  resources :profiles, only: [:show,:edit,:update]
+
   # You can have the root of your site routed with "root"
   root 'home#index'
 

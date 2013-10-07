@@ -1,2 +1,48 @@
 /*try adding !important  after 0px if doesn't work*/
 abbr, accronym{ border-bottom: 0px !important; } 
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+h1,h2,h3,h4 {
+  font-family: 'Abel', sans-serif;
+}
+
+.alert {
+  padding: 0; 
+  margin-bottom: 0; 
+}
+
+#profile_image {
+  border: 1px solid #ddd;
+  padding: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  background: #fff;
+  box-sizing: border-box;
+  height:262px;
+  width:262px;
+}
+
+#key-details {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  width:262px;
+}
+
+.detail {
+  margin-top:2px;
+}
+
+.about-me-labels {
+  color:blue;
+  font-size: 1.0em;
+}
+
+.table-head {
+  width:auto
+}
+
+.update-btn {
+  margin-bottom: 1em;
+}
