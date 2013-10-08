@@ -71,3 +71,5 @@ gem 'carrierwave'
 gem 'rmagick'
 
 gem 'rails_12factor', group: :production
+
+gem 'fog'
