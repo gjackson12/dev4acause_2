@@ -23,6 +23,15 @@ class NonprofitsController < ApplicationController
     @nonprofit = Nonprofit.find(params[:id])
   end
 
+  def update
+    @nonprofit = Nonprofit.find(params[:id]) 
+      if @nonprofit.update_attributes(nonprofit_params)
+        redirect_to nonprofit_path(@nonprofit)
+      else
+        render :edit
+      end
+  end
+
   private
 
   def nonprofit_params
@@ -40,7 +49,10 @@ class NonprofitsController < ApplicationController
       :email_address,
       :website_string,
       :description_mission,
-      :cause
+      :cause,
+      :image,
+      :mission,
+      :vision
       )
   end
 

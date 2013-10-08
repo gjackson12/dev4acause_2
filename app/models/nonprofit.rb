@@ -30,4 +30,6 @@ class Nonprofit < ActiveRecord::Base
 
   validates_format_of :zipcode, 
     with: /\A\d{5}(-\d{4})?\z/i, allow_blank:true
+
+  mount_uploader :image, ImageUploader
 end

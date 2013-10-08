@@ -29,10 +29,15 @@ feature 'user creates non-profit', %Q{
     fill_in 'EIN number', with: '1-1111111'
     fill_in 'City/town', with: 'Washington'
     select('District of Columbia', :from => 'State')
-    fill_in 'Mission description', with: "
+    fill_in 'Description', with: "
       The American Red Cross prevents and alleviates human suffering 
-      in the face of emergencies by mobilizing the power of volunteers 
-      and the generosity of donors."
+      in the face of emergencies."
+    fill_in 'Mission', with: "
+      The American Red Cross prevents and alleviates human suffering 
+      in the face of emergencies."
+    fill_in 'Vision', with: "
+      The American Red Cross prevents and alleviates human suffering 
+      in the face of emergencies."
     select('Disaster Relief', :from => 'Cause area')
     fill_in 'Date founded', with: 'May 21st 1881'
     fill_in 'Phone number', with: '202-111-1111'
@@ -98,7 +103,7 @@ feature 'user creates non-profit', %Q{
     fill_in 'EIN number', with: '1-21111111'
     fill_in 'City/town', with: 'Washington'
     select('District of Columbia', :from => 'State')
-    fill_in 'Mission description', with: "
+    fill_in 'Description', with: "
       The American Red Cross prevents and alleviates human suffering 
       in the face of emergencies by mobilizing the power of volunteers 
       and the generosity of donors."

@@ -21,86 +21,86 @@
     </div>
   </div>
 
-<div class="col-md-5">
-  <ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
-    <li ><a href="#nonprofits" data-toggle="tab">My Nonprofits</a></li>
-  </ul>
+  <div class="col-md-5">
+    <ul id="myTab" class="nav nav-tabs">
+      <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+      <li ><a href="#nonprofits" data-toggle="tab">My Nonprofits</a></li>
+    </ul>
   
-  <div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade in active" id="profile">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3>About Me</h3>
-        </div>
-        <div class="panel-body">
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade in active" id="profile">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>About Me</h3>
+          </div>
+          <div class="panel-body">
 
-          <dl>
-            <dt class="about-me-labels">Birthday</dt>
-            <% if @profile.birthday.present? %>
-              <dd><%= @profile.date_formatter(@profile.birthday) %></dd>
-            <% else %>
-              <dd>No information available.</dd>
-            <% end %>
-          </dl>
+            <dl>
+              <dt class="about-me-labels">Birthday</dt>
+              <% if @profile.birthday.present? %>
+                <dd><%= @profile.date_formatter(@profile.birthday) %></dd>
+              <% else %>
+                <dd>No information available.</dd>
+              <% end %>
+            </dl>
 
-          <dl>
-            <dt class="about-me-labels">Brief Introduction</dt>
-            <% if @profile.about_me.present? %>
-              <dd><%= @profile.about_me %></dd>
-            <% else %>
-              <dd>No information available.</dd>
-            <% end %>
-          </dl>
+            <dl>
+              <dt class="about-me-labels">Brief Introduction</dt>
+              <% if @profile.about_me.present? %>
+                <dd><%= @profile.about_me %></dd>
+              <% else %>
+                <dd>No information available.</dd>
+              <% end %>
+            </dl>
 
-          <dl>
-            <dt class="about-me-labels">Skills</dt>
-            <% if @profile.skills.present? %>
-              <% @profile.skills.each do |skill| %>
-                <span><%= skill.name %></span>
-              <%- end -%>
-            <% else %>
-              <dd>No information available.</dd>
-            <% end %>
-          </dl>
+            <dl>
+              <dt class="about-me-labels">Skills</dt>
+              <% if @profile.skills.present? %>
+                <% @profile.skills.each do |skill| %>
+                  <span><%= skill.name %></span>
+                <%- end -%>
+              <% else %>
+                <dd>No information available.</dd>
+              <% end %>
+            </dl>
 
-          <dl>
-            <dt class="about-me-labels">Reason I Joined Dev4aCause</dt>
-            <% if @profile.reason_here.present? %>
-              <dd><%= @profile.reason_here %></dd>
-            <% else %>
-              <dd>No information available.</dd>
-            <% end %>
-          </dl>
+            <dl>
+              <dt class="about-me-labels">Reason I Joined Dev4aCause</dt>
+              <% if @profile.reason_here.present? %>
+                <dd><%= @profile.reason_here %></dd>
+              <% else %>
+                <dd>No information available.</dd>
+              <% end %>
+            </dl>
 
-          <dl>
-            <dt class="about-me-labels">Current Company</dt>
-            <% if @profile.current_company.present? %>
-              <dd><%= @profile.current_company %></dd>
-            <% else %>
-              <dd>No information available.</dd>
-            <% end %>
-          </dl>
+            <dl>
+              <dt class="about-me-labels">Current Company</dt>
+              <% if @profile.current_company.present? %>
+                <dd><%= @profile.current_company %></dd>
+              <% else %>
+                <dd>No information available.</dd>
+              <% end %>
+            </dl>
 
-          <dl>
-            <dt class="about-me-labels">Education</dt>
-            <% if @profile.education.present? %>
-              <dd><%= @profile.education %></dd>
-            <% else %>
-              <dd>No information available.</dd>
-            <% end %>
-          </dl>
+            <dl>
+              <dt class="about-me-labels">Education</dt>
+              <% if @profile.education.present? %>
+                <dd><%= @profile.education %></dd>
+              <% else %>
+                <dd>No information available.</dd>
+              <% end %>
+            </dl>
 
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="tab-pane fade" id="nonprofits">
-      <%= render "profiles/users_nonprofits", profile: @profile %>
-    </div>
+      <div class="tab-pane fade" id="nonprofits">
+        <%= render "profiles/users_nonprofits", profile: @profile %>
+      </div>
 
+    </div>
   </div>
-</div>
 
   <div class="col-md-3 pull-right">
     <% if view_user == current_user %>

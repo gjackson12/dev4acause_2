@@ -68,7 +68,6 @@ feature 'user creates non-profit', %Q{
     fill_in 'How to apply', with: 'Please send an e-mail to john@redcross.org.
       Also please submit an application with your portfolio by following this
       link: http://www.jobvite.com/fakeapplication'
-    save_and_open_page
     click_on 'Create Opportunity'
 
     expect(nonprofit.opportunities.count).to eql(1)

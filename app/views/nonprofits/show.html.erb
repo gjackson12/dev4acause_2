@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-md-3 col-md-offset-2">
+    <div id="profile_image">
+      <%= image_tag @nonprofit.image_url(:thumb).to_s %>
+    </div>
+    <h3><%= @nonprofit.name %></h3>
+    <div id="key-details">
+        <p>
+          <span class="glyphicon glyphicon-flag"></span>
+          <span>The Cause:</span>
+          <%= @nonprofit.cause %>
+        </p>
+        <p>
+          <span class="glyphicon glyphicon-time"></span>
+          <span> Joined on,</span>
+          <%= " #{date_formatter(@nonprofit.created_at)}" %>
+        </p>
+    </div>
+    <div id="contact-details">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Contact Information</h3>
+        </div>
+        <div class="panel-body">
+          <dl>
+              <% if @nonprofit.email_address.present? %>
+                <dt class="about-me-labels">Email</dt>
+                <dd><%= @nonprofit.email_address %></dd>
+              <% end %>
+
+              <% if @nonprofit.website_string.present? %>
+                <dt class="about-me-labels">Website</dt>
+                <dd><%=link_to @nonprofit.website_string, @nonprofit.website_string %></dd>
+              <% end %>
+
+               <% if @nonprofit.phone_number.present? %>
+                <dt class="about-me-labels">Phone</dt>
+                <dd><%= @nonprofit.phone_number %></dd>
+              <% end %>
+
+              <% if @nonprofit.fax_number.present? %>
+                <dt class="about-me-labels">Fax</dt>
+                <dd><%= @nonprofit.fax_number %></dd>
+              <% end %>
+
+                <dt class="about-me-labels">Address</dt>
+                <% if @nonprofit.street_address? %>
+                  <dd><%= "#{@nonprofit.street_address}" %></dd>
+                <% end %>
+                <dd><%= "#{@nonprofit.city}, #{@nonprofit.zipcode}, #{@nonprofit.state}" %></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="pull-right nonprofit-btns">
+      <% if @nonprofit.user == current_user %>
+        <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Nonprofit", edit_nonprofit_path(@nonprofit), :class =>  "btn btn-default" %>
+        <%= link_to raw('<i class="glyphicon glyphicon-plus"></i>') + " Create an Opportunity", new_nonprofit_opportunity_path(@nonprofit), :class =>  "btn btn-default" %>
+      <% end %>
+    </div>
+    <ul id="myTab" class="nav nav-tabs">
+      <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+      <li ><a href="#nonprofits" data-toggle="tab">My Nonprofits</a></li>
+    </ul>
+  
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade in active" id="profile">
+          <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2>Key Facts</h2>
+          </div>
+          <div class="panel-body">
+            <dl>
+              <% if @nonprofit.mission? %>
+                <dt class="about-me-labels">Mission</dt>
+                <dd><%= @nonprofit.mission %></dd>
+              <% end %>
+                <dt class="about-me-labels">Description</dt>
+                <dd><%= @nonprofit.description_mission %></dd>
+              <% if @nonprofit.vision? %>
+              <dt class="about-me-labels">Vision</dt>
+              <dd><%= @nonprofit.vision %></dd>
+              <% end %>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="nonprofits">
+
+      </div>
+  </div>
+</div>

@@ -35,22 +35,24 @@ feature 'user edits their nonprofit', %Q{
     expect(nonprofit.reload.name).to eql(new_nonprofit_name)
   end
 
-    # scenario 'does not specify required information' do
-    #    user = FactoryGirl.create(:user)
-    #    nonprofit = FactoryGirl.create(:nonprofit, user: user)
-    #    visit new_user_session_path
-    #    fill_in "Email", with: user.email 
-    #    fill_in "Password", with: user.password
-    #    click_button 'Sign in'
+    scenario 'does not specify required information' do
+       user = FactoryGirl.create(:user)
+       nonprofit = FactoryGirl.create(:nonprofit, user: user)
+       visit new_user_session_path
+       fill_in "Email", with: user.email 
+       fill_in "Password", with: user.password
+       click_button 'Sign in'
        
-    #    visit edit_nonprofit_path(nonprofit)
+       visit edit_nonprofit_path(nonprofit)
 
-    #    fill_in 'Name', with: "Edit Nonprofit"
+       fill_in 'Name', with: ""
 
-    #    within ".nonprofit_name" do
-    #        expect(page).to have_content "can't be blank"
-    #    end
+       nonprofit = nonprofit.reload
 
-    # end
+       within ".nonprofit_name" do
+           expect(page).to have_content "can't be blank"
+       end
+
+    end
 
 end
