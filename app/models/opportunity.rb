@@ -22,4 +22,8 @@ class Opportunity < ActiveRecord::Base
     where("to_tsvector(coalesce(description, '') || ' ' || coalesce(headline,'') || ' ' || coalesce(extra_details, '')) @@ plainto_tsquery(?)", query)
   end
 
+  def self.createable_by(user,nonprofit)
+    user.id == nonprofit.user_id
+  end
+
 end

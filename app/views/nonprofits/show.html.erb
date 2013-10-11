@@ -5,16 +5,16 @@
     </div>
     <h3><%= @nonprofit.name %></h3>
     <div id="key-details">
-        <p>
-          <span class="glyphicon glyphicon-flag"></span>
-          <span>The Cause:</span>
+      <p>
+        <span class="glyphicon glyphicon-flag"></span>
+        <span>The Cause:</span>
           <%= @nonprofit.cause %>
-        </p>
-        <p>
-          <span class="glyphicon glyphicon-time"></span>
-          <span> Joined on,</span>
-          <%= " #{date_formatter(@nonprofit.created_at)}" %>
-        </p>
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-time"></span>
+        <span> Joined on,</span>
+        <%= " #{date_formatter(@nonprofit.created_at)}" %>
+      </p>
     </div>
     <div id="contact-details">
       <div class="panel panel-default">
@@ -23,29 +23,29 @@
         </div>
         <div class="panel-body">
           <dl>
-              <% if @nonprofit.email_address.present? %>
+              <% if @nonprofit.email_address? %>
                 <dt class="about-me-labels">Email</dt>
                 <dd><%= @nonprofit.email_address %></dd>
               <% end %>
 
-              <% if @nonprofit.website_string.present? %>
+              <% if @nonprofit.website_string? %>
                 <dt class="about-me-labels">Website</dt>
                 <dd><%=link_to @nonprofit.website_string, @nonprofit.website_string %></dd>
               <% end %>
 
-               <% if @nonprofit.phone_number.present? %>
+               <% if @nonprofit.phone_number? %>
                 <dt class="about-me-labels">Phone</dt>
                 <dd><%= @nonprofit.phone_number %></dd>
               <% end %>
 
-              <% if @nonprofit.fax_number.present? %>
+              <% if @nonprofit.fax_number? %>
                 <dt class="about-me-labels">Fax</dt>
                 <dd><%= @nonprofit.fax_number %></dd>
               <% end %>
 
                 <dt class="about-me-labels">Address</dt>
                 <% if @nonprofit.street_address? %>
-                  <dd><%= "#{@nonprofit.street_address}" %></dd>
+                <dd><%= "#{@nonprofit.street_address}" %></dd>
                 <% end %>
                 <dd><%= "#{@nonprofit.city}, #{@nonprofit.zipcode}, #{@nonprofit.state}" %></dd>
           </dl>
@@ -62,14 +62,14 @@
     </div>
     <ul id="myTab" class="nav nav-tabs">
       <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
-      <li ><a href="#nonprofits" data-toggle="tab">My Nonprofits</a></li>
+      <li ><a href="#opportunities" data-toggle="tab">Opportunities</a></li>
     </ul>
   
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane fade in active" id="profile">
           <div class="panel panel-default">
           <div class="panel-heading">
-            <h2>Key Facts</h2>
+            <h3>Key Facts</h3>
           </div>
           <div class="panel-body">
             <dl>
@@ -88,8 +88,8 @@
         </div>
       </div>
 
-      <div class="tab-pane fade" id="nonprofits">
-
+      <div class="tab-pane fade" id="opportunities">
+        <%= render "opportunities/nonprofit_opportunities", nonprofit: @nonprofit %>
       </div>
   </div>
 </div>

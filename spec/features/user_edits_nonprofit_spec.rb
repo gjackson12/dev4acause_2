@@ -26,8 +26,6 @@ feature 'user edits their nonprofit', %Q{
     
     visit edit_nonprofit_path(nonprofit)
 
-    click_link "Edit Nonprofit"
-
     fill_in "Name", with: ""
     fill_in 'Name', with: new_nonprofit_name
     click_on 'Update Nonprofit'
@@ -47,7 +45,7 @@ feature 'user edits their nonprofit', %Q{
 
        fill_in 'Name', with: ""
 
-       nonprofit = nonprofit.reload
+       click_button 'Update Nonprofit'
 
        within ".nonprofit_name" do
            expect(page).to have_content "can't be blank"

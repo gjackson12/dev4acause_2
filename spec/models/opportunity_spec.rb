@@ -12,38 +12,7 @@ describe Opportunity do
   it { should have_valid(:description).when(
     "The Actors Theatre Workshop is an award-winning non-profit theatre 
     company that also provides classes in acting and leadership for actors 
-    and business professionals as well as community enrichment programs for 
-    at-risk and underprivileged youth.
-
-    This role will be assisting in extending a campaign through numerous 
-    digital channels as well as concepting in the process. Designers MUST be 
-    trained conceptually, not just in design techniques. It will involve 
-    considerable work with senior members to flesh out and bring to life 
-    conceptual ideas across a variety of digitally-focused media 
-    (sites, banners, mobile, video, guerrilla PR etc.)
-
-    Must be versed in the social media landscape and understand all social 
-    platforms (facebook, twitter, pinterest, instagram, etc.)
-
-    Job Qualifications:
-
-    - Creating and extending digital designs/layouts from an existing campaign 
-      concept
-    - Extensive work in Photoshop, Illustrator, InDesign and Powerpoint
-    - All work is digitally focused, with emphasis on digital media, web site
-      and social media. Experience in digital production and design is critical.
-    - Effective and efficient skills; the ability to turn items well and fast
-    - Learning the business and developing their skillset by working closely 
-      with strategy and being able to apply those learning's when called upon 
-      to work independently. Someone who has progressed beyond entry-level 
-      responsibilities will find it easier to succeed in this role, but not 
-      necessary.
-    - Contributing new ideas and creative design solutions appropriate for 
-      diverse media outlets, evolving technologies, and current trends
-    - Being self-motivated, hard working, well organized, and resilient to 
-      ever-changing timelines, requests, and deliverables
-
-    Please submit a portfolio of previous work, if possible."
+    and business professionals as well as com."
     )}
   it { should_not have_valid(:description).when(nil,"") }
 

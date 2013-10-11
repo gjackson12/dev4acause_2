@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Browse People</h1>
+<% @profiles.each do |profile| %>
+      <div class="result">
+        <div class="pull-right">
+          <%= "#{profile.city}, #{profile.state}"  %>
+        </div>
+        <%= link_to image_tag(gravatar_url(profile,'s50')), profile_path(profile) %>
+        <%= link_to "#{profile.first_name} #{profile.last_name}", profile_path(profile), :class=>"text" %>
+        <% if profile.skills.present? %>
+          <% profile.skills.each do |skill| %>
+            <%= skill.name %>
+          <% end %>
+        <%- end -%>
+      </div>
+  <% end %>
+  </div>
+</div>

@@ -1,11 +1,95 @@
 <div class="row">
-  <div class="col-md-4">
-    <%= @opportunity.headline %>
-  </div>
-</div>
+  <div class="col-md-5 col-md-offset-2">
+    <h1><%= @opportunity.headline %></h1>
+    <h4>Opportunity posted by <%= link_to @opportunity.nonprofit.name, nonprofit_path(@opportunity.nonprofit) %></h4>
+    <h4>Posted on <%= date_formatter(@opportunity.created_at) %></h4>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>Opportunity Key Facts</h3>
+        </div>
+        <div class="panel-body">
+          <dl>
+            <dt class="about-me-labels">Description</dt>
+            <dd><%= @opportunity.description %></dd>
 
-<div class="row">
-  <div class="col-md-4">
-    <%= @opportunity.state %>
+            <dt class="about-me-labels">Current Technology Stack</dt>
+            <dd><%= @opportunity.current_stack %></dd>
+
+            <% if @opportunity.skills.present? %>
+              <dt class="about-me-labels">Preferred Skills</dt>
+              <% @opportunity.skills.each do |skill| %>
+                  <span><%= skill.name %></span>
+              <%- end -%>
+            <% end %>
+
+            <dt class="about-me-labels">How to apply</dt>
+            <dd><%= @opportunity.application_info %></dd>
+
+            <% if @opportunity.duration? %>
+              <dt class="about-me-labels">Project Duration</dt>
+              <dd><%= @opportunity.application_info %></dd>
+            <% end %>
+
+             <% if @opportunity.time_commitment? %>
+              <dt class="about-me-labels">Estimated Time Commitment</dt>
+              <dd><%= @opportunity.time_commitment %></dd>
+            <% end %>
+
+            <% if @opportunity.start_date? %>
+              <dt class="about-me-labels">Start Date</dt>
+              <dd><%= @opportunity.start_date %></dd>
+            <% end %>
+
+            <% if @opportunity.end_date? %>
+              <dt class="about-me-labels">End Date</dt>
+              <dd><%= @opportunity.end_date %></dd>
+            <% end %>
+
+
+            <% if @opportunity.extra_details? %>
+              <dt class="about-me-labels">Extra Details</dt>
+              <dd><%= @opportunity.extra_details %></dd>
+            <% end %>
+          </dl>
+        </div>
+      </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default contact-panel">
+      <div class="panel-heading">
+        <h3>Contact Information</h3>
+      </div>
+      <div class="panel-body">
+        <dl>
+          <dt class="about-me-labels">Address</dt>
+          <dd>
+            <%= @opportunity.street_address %>
+            <%= "#{@opportunity.state} #{@opportunity.zipcode}" %>
+          </dd>
+
+          <% if @opportunity.nonprofit.email_address? %>
+            <dt class="about-me-labels">Email</dt>
+            <dd>
+              <%= @opportunity.nonprofit.email_address %>
+            </dd>
+          <% end %>
+
+           <% if @opportunity.nonprofit.phone_number? %>
+            <dt class="about-me-labels">Phone number</dt>
+            <dd>
+              <%= @opportunity.nonprofit.phone_number %>
+            </dd>
+          <% end %>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <% if @opportunity.nonprofit.user == current_user %>
+      <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Opportunity", edit_nonprofit_opportunity_path(@opportunity.nonprofit,@opportunity), :class =>  "btn btn-default" %>
+    <% end %>
+     <% if @opportunity.nonprofit.user == current_user %>
+      <%= link_to raw('<i class="glyphicon glyphicon-remove"></i>') + " Delete Opportunity",nonprofit_opportunity_path(@opportunity.nonprofit, @opportunity), method: :delete, data: { confirm: 'Are you sure?' } , :class =>  "btn btn-default" %>
+    <% end %>
   </div>
 </div>
