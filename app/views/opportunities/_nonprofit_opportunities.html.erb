@@ -12,7 +12,7 @@
       <tr>
         <td><%= opportunity.headline %></td>
         <td><%= opportunity.description %></td>
-        <td><%= link_to "View", nonprofit_opportunity_path(nonprofit, opportunity) %></td>
+        <td><%= link_to "View", opportunity_path(opportunity) %></td>
       </tr>
       <% end %>
     <% else %>

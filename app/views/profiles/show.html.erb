@@ -22,7 +22,7 @@
   </div>
 
   <div class="col-md-5">
-     <div class="pull-right">
+     <div class="profile-btns">
       <% if view_user == current_user %>
         <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Profile", edit_profile_path(current_user), :class =>  "btn btn-default" %>
         <%= link_to raw('<i class="glyphicon glyphicon-plus"></i>') + " Create a Nonprofit", new_nonprofit_path, :class =>  "btn btn-default" %>
@@ -61,13 +61,11 @@
 
             <dl>
               <dt class="about-me-labels">Skills</dt>
-              <% if @profile.present? %>
-                <% @profile.skills.each do |skill| %>
-                  <span><%= skill.name %></span>
-                <%- end -%>
-              <% else %>
-                <dd>No information available.</dd>
-              <% end %>
+                <% unless @profile.skills.empty? %> 
+                  <%= @profile.skills.map(&:name).join(', ') %>
+                <% else %>
+                  <p>No information available.</p>
+                <% end %>
             </dl>
 
             <dl>

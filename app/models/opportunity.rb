@@ -18,8 +18,8 @@ class Opportunity < ActiveRecord::Base
   validates_inclusion_of :state, 
     in: State::STATES, allow_blank:true
 
-  def self.search(query)
-    where("to_tsvector(coalesce(description, '') || ' ' || coalesce(headline,'') || ' ' || coalesce(extra_details, '')) @@ plainto_tsquery(?)", query)
+  def self.search(query, state = nil)
+    results = where("to_tsvector(coalesce(description, '') || ' ' || coalesce(headline,'') || ' ' || coalesce(extra_details, '')) @@ plainto_tsquery(?)", query)
   end
 
   def self.createable_by(user,nonprofit)

@@ -1,5 +1,13 @@
 class OpportunitiesController < ApplicationController
-  before_filter :authorized_for_nonprofit
+  before_filter :authorized_for_nonprofit, except:[:index, :show]
+
+  def index
+    if params[:q].present?
+      @opportunities = Opportunity.search(params[:q])
+    else  
+      @opportunities = Opportunity.all
+    end
+  end
 
   def new
     @opportunity = nonprofit.opportunities.new
@@ -17,7 +25,7 @@ class OpportunitiesController < ApplicationController
   end
 
   def show
-    @opportunity = nonprofit.opportunities.find(params[:id])
+    @opportunity = Opportunity.find(params[:id])
   end
 
   def edit

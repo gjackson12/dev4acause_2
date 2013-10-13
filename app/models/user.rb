@@ -26,5 +26,16 @@ class User < ActiveRecord::Base
     formatted_date = date.to_date
     formatted_date = formatted_date.to_formatted_s(:long)
   end
+
+  def self.developers
+    users = self.all
+    developers = []
+    users.each do |user|
+      if user.skills.present?
+        developers << user
+      end
+    end
+    return developers
+  end
   
 end

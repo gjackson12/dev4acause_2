@@ -1,4 +1,9 @@
 class NonprofitsController < ApplicationController
+  
+  def index
+    @nonprofits = Nonprofit.order('state ASC').page(params[:page]).per(10) 
+  end
+
   def new
     @nonprofit = Nonprofit.new
   end

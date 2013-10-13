@@ -54,7 +54,7 @@
     </div>
   </div>
   <div class="col-md-5">
-    <div class="pull-right nonprofit-btns">
+    <div class="nonprofit-btns">
       <% if @nonprofit.user == current_user %>
         <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Nonprofit", edit_nonprofit_path(@nonprofit), :class =>  "btn btn-default" %>
         <%= link_to raw('<i class="glyphicon glyphicon-plus"></i>') + " Create an Opportunity", new_nonprofit_opportunity_path(@nonprofit), :class =>  "btn btn-default" %>

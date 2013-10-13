@@ -7,13 +7,19 @@ feature 'user searches for opportunities', %q{
 } do
 
   scenario 'search for existing opportunities' do
-    opportunity = FactoryGirl.create(:opportunity, headline: 'banana farmer')
+    target = FactoryGirl.create(:opportunity, headline: 'banana farmer')
+    other = FactoryGirl.create(:opportunity, headline: 'yak shaver')
 
-    visit root_path
+    visit opportunities_path
+
+    expect(page).to have_content('yak shaver')
+    expect(page).to have_content('banana farmer') 
+
     fill_in 'Search', with: 'bananas'
     click_button 'Search Opportunities'
 
     expect(page).to have_content('banana farmer')
+    expect(page).to_not have_content('yak shaver')
   end
 
 end

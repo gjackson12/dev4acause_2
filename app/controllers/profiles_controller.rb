@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   helper_method :view_user
 
   def index
-    @profiles = User.order('state ASC')
+    @profiles = User.order('state ASC').page(params[:page]).per(10)
   end
 
   def show
