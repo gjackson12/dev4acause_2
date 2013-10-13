@@ -1,6 +1,10 @@
 class ProfilesController < ApplicationController
   helper_method :view_user
 
+  def index
+    @profiles = User.order('state ASC').page(params[:page]).per(10)
+  end
+
   def show
     @profile = User.find(params[:id])
   end

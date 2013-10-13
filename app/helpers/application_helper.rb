@@ -11,9 +11,9 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
-  def gravatar_url(user)  
+  def gravatar_url(user,photo_params = {})  
     gravatar_id = Digest::MD5::hexdigest(user.email).downcase 
-    "http://gravatar.com/avatar/#{gravatar_id}.png?s=250"  
+    "http://gravatar.com/avatar/#{gravatar_id}.png?" << photo_params 
   end
 
    def date_formatter(date)

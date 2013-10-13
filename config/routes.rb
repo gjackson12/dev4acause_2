@@ -9,10 +9,10 @@ Dev4acause::Application.routes.draw do
   resources :home, only: [:index]
 
   resources :nonprofits do
-    resources :opportunities
+    resources :opportunities, except: [:index]
   end
 
-  resources :opportunities, only: [] do
+  resources :opportunities, only: [:index, :show] do
     get 'search', on: :collection
   end
 

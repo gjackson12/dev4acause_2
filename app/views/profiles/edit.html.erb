@@ -1,7 +1,15 @@
 <%= simple_form_for @profile , url:profile_path(@profile) do |f| %>
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <h2>Update Profile</h2>
+      <div class="text-center">
+        <h2>Edit your Profile</h2>
+      </div>
+      <hr>
+      <p>Tell us more about you! The more information you can share the better. Share your technical skills and altogether awesomeness. Go ahead, brag a little bit.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
       <%= f.input :first_name %>
       <%= f.input :last_name %>
       <%= f.input :city, label: "City/town" %>
