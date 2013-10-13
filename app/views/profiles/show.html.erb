@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-md-3 col-md-offset-1">
+  <div class="col-md-3 col-md-offset-2">
     <div id="profile_image">
-      <%= link_to image_tag(gravatar_url(view_user)), "http://gravatar.com/emails/" %>
+      <%= link_to image_tag(gravatar_url(view_user,'s=250')), "http://gravatar.com/emails/" %>
     </div>
-    <h2><%= "#{@profile.first_name} #{@profile.last_name}" %></h2>
+    <h3><%= "#{@profile.first_name} #{@profile.last_name}" %></h3>
     <div id="key-details">
         <p>
           <span class="glyphicon glyphicon-globe"></span>
@@ -22,11 +22,17 @@
   </div>
 
   <div class="col-md-5">
+     <div class="profile-btns">
+      <% if view_user == current_user %>
+        <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Profile", edit_profile_path(current_user), :class =>  "btn btn-default" %>
+        <%= link_to raw('<i class="glyphicon glyphicon-plus"></i>') + " Create a Nonprofit", new_nonprofit_path, :class =>  "btn btn-default" %>
+      <% end %>
+    </div>
+
     <ul id="myTab" class="nav nav-tabs">
       <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
       <li ><a href="#nonprofits" data-toggle="tab">My Nonprofits</a></li>
     </ul>
-  
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane fade in active" id="profile">
         <div class="panel panel-default">
@@ -37,7 +43,7 @@
 
             <dl>
               <dt class="about-me-labels">Birthday</dt>
-              <% if @profile.birthday.present? %>
+              <% if @profile.birthday? %>
                 <dd><%= @profile.date_formatter(@profile.birthday) %></dd>
               <% else %>
                 <dd>No information available.</dd>
@@ -46,7 +52,7 @@
 
             <dl>
               <dt class="about-me-labels">Brief Introduction</dt>
-              <% if @profile.about_me.present? %>
+              <% if @profile.about_me? %>
                 <dd><%= @profile.about_me %></dd>
               <% else %>
                 <dd>No information available.</dd>
@@ -55,18 +61,16 @@
 
             <dl>
               <dt class="about-me-labels">Skills</dt>
-              <% if @profile.skills.present? %>
-                <% @profile.skills.each do |skill| %>
-                  <span><%= skill.name %></span>
-                <%- end -%>
-              <% else %>
-                <dd>No information available.</dd>
-              <% end %>
+                <% unless @profile.skills.empty? %> 
+                  <%= @profile.skills.map(&:name).join(', ') %>
+                <% else %>
+                  <p>No information available.</p>
+                <% end %>
             </dl>
 
             <dl>
               <dt class="about-me-labels">Reason I Joined Dev4aCause</dt>
-              <% if @profile.reason_here.present? %>
+              <% if @profile.reason_here? %>
                 <dd><%= @profile.reason_here %></dd>
               <% else %>
                 <dd>No information available.</dd>
@@ -75,7 +79,7 @@
 
             <dl>
               <dt class="about-me-labels">Current Company</dt>
-              <% if @profile.current_company.present? %>
+              <% if @profile.current_company? %>
                 <dd><%= @profile.current_company %></dd>
               <% else %>
                 <dd>No information available.</dd>
@@ -84,7 +88,7 @@
 
             <dl>
               <dt class="about-me-labels">Education</dt>
-              <% if @profile.education.present? %>
+              <% if @profile.education? %>
                 <dd><%= @profile.education %></dd>
               <% else %>
                 <dd>No information available.</dd>
@@ -100,12 +104,5 @@
       </div>
 
     </div>
-  </div>
-
-  <div class="col-md-3 pull-right">
-    <% if view_user == current_user %>
-      <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Profile", edit_profile_path(current_user), :class =>  "btn btn-default" %>
-      <%= link_to raw('<i class="glyphicon glyphicon-plus"></i>') + " Create a Nonprofit", new_nonprofit_path, :class =>  "btn btn-default" %>
-    <% end %>
   </div>
 </div>

@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead class="table-head">
+    <tr>
+      <td>Headline</td>
+      <td>Description</td>
+      <td>Details</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% if nonprofit.opportunities.present? %>
+      <% nonprofit.opportunities.each do |opportunity| %>
+      <tr>
+        <td><%= opportunity.headline %></td>
+        <td><%= opportunity.description %></td>
+        <td><%= link_to "View", opportunity_path(opportunity) %></td>
+      </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>There are no opportuntities currently available.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
