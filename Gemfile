@@ -75,3 +75,7 @@ gem 'rails_12factor', group: :production
 gem 'kaminari'
 
 gem 'fog'
+
+gem 'omniauth'
+
+gem 'omniauth-facebook'
