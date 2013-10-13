@@ -4,7 +4,7 @@ class AddStuffToUser < ActiveRecord::Migration
     add_column :users, :last_name, :string, null:false
     add_column :users, :city, :string, null:false
     add_column :users, :state, :string, null:false
-    add_column :users, :zipcode, :string, null:false
+    add_column :users, :zipcode, :string
     add_column :users, :about_me, :text
     add_column :users, :current_company, :string
   end

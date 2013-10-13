@@ -10,9 +10,10 @@
         <%= f.input :password, :required => false %>
       </div>
 
-        <div class="text-center">
+      <div class="text-center">
         <%= f.button :submit, "Sign in", class: 'btn btn-primary btn-lg' %>
-        </div>
+          <%= link_to image_tag("fb_login.png"), user_omniauth_authorize_path(:facebook) %>
+      </div>
     <% end %>
   </div>
 </div>
