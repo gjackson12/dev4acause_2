@@ -3,9 +3,9 @@ class OpportunitiesController < ApplicationController
 
   def index
     if params[:q].present?
-      @opportunities = Opportunity.search(params[:q])
+      @opportunities = Opportunity.search(params[:q]).page(params[:page]).per(10)
     else  
-      @opportunities = Opportunity.all
+      @opportunities = Opportunity.all.page(params[:page]).per(10)
     end
   end
 

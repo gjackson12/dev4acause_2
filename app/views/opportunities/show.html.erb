@@ -37,12 +37,12 @@
 
             <% if @opportunity.start_date? %>
               <dt class="about-me-labels">Start Date</dt>
-              <dd><%= @opportunity.start_date %></dd>
+              <dd><%= date_formatter(@opportunity.start_date) %></dd>
             <% end %>
 
             <% if @opportunity.end_date? %>
               <dt class="about-me-labels">End Date</dt>
-              <dd><%= @opportunity.end_date %></dd>
+              <dd><%= date_formatter(@opportunity.end_date) %></dd>
             <% end %>
 
 

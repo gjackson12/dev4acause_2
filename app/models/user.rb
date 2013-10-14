@@ -47,12 +47,15 @@ class User < ActiveRecord::Base
                           )
       end
     end
-    binding.pry
     user
   end
 
   def self.location_cleaner(fb_location)
     fb_location.split(/, /)
+  end
+
+  def self.search(query, state = nil)
+    results = where("to_tsvector(coalesce(state, '') || ' ' || coalesce(about_me,'') || ' ' || coalesce(city, '')) @@ plainto_tsquery(?)", query)
   end
 
 end
