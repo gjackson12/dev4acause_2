@@ -10,57 +10,6 @@
 </head>
 <body>
 
-<!--
-<div class="modal fade" id="loginModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Login</h4>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for(:user, :url => user_session_path) do |f| %>
-          <%= f.input :email, :required => false, :autofocus => true %>
-          <%= f.input :password, :required => false %>
-          <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default text-center" data-dismiss="modal">Close</button>
-          <%= f.button :submit, "Sign in", :class => 'btn btn-primary' %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!--
-<div class="modal fade" id="signUpModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Login</h4>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for(:user, :url => user_registration_path) do |f| %>
-          <%= f.input :email, :required => false, :autofocus => true %>
-          <%= f.input :password, :required => false %>
-          <%= f.input :password_confirmation, label: 'Verify password', :required => true %>
-          <%= f.input :first_name, :required => true %>
-          <%= f.input :last_name, :required => true %>
-          <%= f.input :city, label: 'City/town', :required => true  %>
-          <%= f.input :state, collection: State::STATES, include_blank: 'Select...',required: true, label: "State" %>
-          <%= f.input :zipcode, label: 'Postal code', :required => true %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default text-center" data-dismiss="modal">Close</button>
-          <%= f.button :submit, "Sign up", class: 'btn-primary' %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>-->
-
   <nav class="navbar navbar-inverse" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -76,7 +25,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">About</a></li>
+        <li><a href="#">About</a></li>
         <li><%= link_to 'Opportunities', opportunities_path %></li>
         <li><%= link_to 'People', profiles_path %></li>
         <li><%= link_to 'Nonprofits', nonprofits_path %></li>

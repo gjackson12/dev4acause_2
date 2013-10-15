@@ -29,7 +29,6 @@ feature 'user signs up for the site', %Q{
     fill_in "Last name", with: "Smith"
     fill_in "City/town", with: "Washington"
     select('District of Columbia', :from => 'State')
-    fill_in "Postal code", with: "20009"
     click_button 'Sign up'
     expect(page).to have_content(email)
     expect(User.count).to eql(prev_user_count + 1)
@@ -66,10 +65,6 @@ feature 'user signs up for the site', %Q{
         expect(page).to have_content "can't be blank"
     end
 
-     within ".user_zipcode" do
-        expect(page).to have_content "can't be blank"
-    end
-
   end
 
   scenario 'does not specify an 8 character password, told to provide 8 character password' do
@@ -82,7 +77,6 @@ feature 'user signs up for the site', %Q{
     fill_in "Last name", with: "Smith"
     fill_in "City/town", with: "Washington"
     select('District of Columbia', :from => 'State')
-    fill_in "Postal code", with: "20009"
     click_button 'Sign up'
 
     within ".user_password" do
