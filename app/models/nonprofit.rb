@@ -32,4 +32,8 @@ class Nonprofit < ActiveRecord::Base
     with: /\A\d{5}(-\d{4})?\z/i, allow_blank:true
 
   mount_uploader :image, ImageUploader
+
+  def self.search(query, state = nil)
+    results = where("to_tsvector(coalesce(name, '') || ' ' || coalesce(description_mission,'') || ' ' || coalesce(city, '') || ' ' || coalesce(mission, '')) @@ plainto_tsquery(?)", query)
+  end
 end

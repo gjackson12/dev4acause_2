@@ -2,7 +2,11 @@ class ProfilesController < ApplicationController
   helper_method :view_user
 
   def index
-    @profiles = User.order('state ASC').page(params[:page]).per(10)
+    if params[:q].present?
+      @profiles = User.search(params[:q]).page(params[:page]).per(10)
+    else  
+      @profiles = User.all.page(params[:page]).per(10)
+    end 
   end
 
   def show

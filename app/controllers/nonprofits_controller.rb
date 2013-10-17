@@ -1,7 +1,11 @@
 class NonprofitsController < ApplicationController
   
   def index
-    @nonprofits = Nonprofit.order('state ASC').page(params[:page]).per(10) 
+    if params[:q].present?
+      @nonprofits = Nonprofit.search(params[:q]).page(params[:page]).per(10)
+    else  
+      @nonprofits = Nonprofit.all.page(params[:page]).per(10)
+    end 
   end
 
   def new

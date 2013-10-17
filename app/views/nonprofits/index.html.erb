@@ -1,11 +1,31 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+    <div class="text-center">
+      <%= form_tag(nonprofits_path, method: :get ) do %>            
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search Nonprofits", class: "btn btn-primary") %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
     <h1>Browse Nonprofits</h1>
     <%= paginate @nonprofits %>
-<% @nonprofits.each do |nonprofit| %>
-      <div class="result">
-        <%= link_to nonprofit.name, nonprofit_path(nonprofit), :class=>"text" %>
+    <% @nonprofits.each do |nonprofit| %>
+      <div class="search-result-container">
+        <div class="media">
+          <div class="pull-right">
+             <%= "#{nonprofit.city}, #{nonprofit.state}" %>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading"><%= link_to nonprofit.name, nonprofit_path(nonprofit) %></h4>
+            Cause: <%= nonprofit.cause %>
+            <p><%= nonprofit.description_mission[0..250].gsub(/\s\w+$/,'...') %></p>
+          </div>
+        </div>
       </div>
-  <% end %>
+    <% end %>
   </div>
 </div>

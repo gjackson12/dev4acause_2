@@ -37,12 +37,12 @@
 
             <% if @opportunity.start_date? %>
               <dt class="about-me-labels">Start Date</dt>
-              <dd><%= @opportunity.start_date %></dd>
+              <dd><%= date_formatter(@opportunity.start_date) %></dd>
             <% end %>
 
             <% if @opportunity.end_date? %>
               <dt class="about-me-labels">End Date</dt>
-              <dd><%= @opportunity.end_date %></dd>
+              <dd><%= date_formatter(@opportunity.end_date) %></dd>
             <% end %>
 
 
@@ -85,11 +85,27 @@
     </div>
   </div>
   <div class="col-md-2">
-    <% if @opportunity.nonprofit.user == current_user %>
-      <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Opportunity", edit_nonprofit_opportunity_path(@opportunity.nonprofit,@opportunity), :class =>  "btn btn-default" %>
-    <% end %>
-     <% if @opportunity.nonprofit.user == current_user %>
-      <%= link_to raw('<i class="glyphicon glyphicon-remove"></i>') + " Delete Opportunity",nonprofit_opportunity_path(@opportunity.nonprofit, @opportunity), method: :delete, data: { confirm: 'Are you sure?' } , :class =>  "btn btn-default" %>
+    <% if user_signed_in? %>
+      <% if @opportunity.nonprofit.user == current_user %>
+        <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Opportunity", edit_nonprofit_opportunity_path(@opportunity.nonprofit,@opportunity), :class =>  "btn btn-default" %>
+      <% end %>
+       <% if @opportunity.nonprofit.user == current_user %>
+        <%= link_to raw('<i class="glyphicon glyphicon-remove"></i>') + " Delete Opportunity",nonprofit_opportunity_path(@opportunity.nonprofit, @opportunity), method: :delete, data: { confirm: 'Are you sure?' } , :class =>  "btn btn-default" %>
+      <% end %>
     <% end %>
   </div>
 </div>
+
+<!-- AddThis Smart Layers BEGIN -->
+<!-- Go to http://www.addthis.com/get/smart-layers to customize -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52580eef45216ac4"></script>
+<script type="text/javascript">
+  addthis.layers({
+    'theme' : 'transparent',
+    'share' : {
+      'position' : 'left',
+      'numPreferredServices' : 4
+    }   
+  });
+</script>
+<!-- AddThis Smart Layers END -->

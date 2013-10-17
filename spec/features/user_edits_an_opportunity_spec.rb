@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature ' owner edits non-profi', %Q{
+feature ' owner edits non-profit', %Q{
   As an authenticated user
   I can edit a non-profit I own
   So that I can update the opportunitiy with the latest information
@@ -20,20 +20,20 @@ feature ' owner edits non-profi', %Q{
   scenario 'specifies valid information' do
     user = FactoryGirl.create(:user)
     nonprofit = FactoryGirl.create(:nonprofit, user: user)
-    opportunity = FactoryGirl.create(:opportunity, description: "new stuff", nonprofit: nonprofit)
-    new_description = 'Seeking Digital Designer Volunteers for Non-Profit Theater 
+    opportunity = FactoryGirl.create(:opportunity, headline: "new stuff", nonprofit: nonprofit)
+    new_headline = 'Seeking Digital Designer Volunteers for Non-Profit Theater 
        that serves Homeless Children'
     visit new_user_session_path
     fill_in "Email", with: user.email 
     fill_in "Password", with: user.password
     click_button 'Sign in'
     
-    visit new_nonprofit_opportunity_path(nonprofit,opportunity)
+    visit edit_nonprofit_opportunity_path(nonprofit,opportunity)
 
-    fill_in 'Headline', with: new_description
+    fill_in 'Headline', with: new_headline
     click_on 'Update Opportunity'
 
-    expect(opportunity.reload.description).to eql(new_description)
+    expect(opportunity.reload.headline).to eql(new_headline)
   end
 
   # scenario 'does not specify required information' do
