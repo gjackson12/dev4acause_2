@@ -37,7 +37,8 @@
                 <dt class="about-me-labels">Phone</dt>
                 <dd><%= @nonprofit.phone_number %></dd>
               <% end %>
-
+              <% #TODO: @nonprofit.dl_for(:fax_number) %>
+              <% #TODO: dl_for(@nonprofit, :fax_number) %>
               <% if @nonprofit.fax_number? %>
                 <dt class="about-me-labels">Fax</dt>
                 <dd><%= @nonprofit.fax_number %></dd>
