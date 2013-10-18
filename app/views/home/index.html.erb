@@ -1,9 +1,25 @@
 <div class="jumbotron">
   <h1 class="text-center" id="center-stage">Dev4aCause</h1>
+  <h2 class="text-center" id="center-goal">Connecting community conscious developers and nonprofits.</h2>
+  <p class="text-center"><%= link_to 'Sign up', new_user_registration_path, class: "btn btn-success btn-lg" %></p>
+</div>
+
+<div class="row">
+  <div class="col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3">
+    <div class="text-center"><%= image_tag('bubble_talk.png') %></div>
+    <h3 class="text-center">Nonprofits</h3>
+    <p class="text-center">Sign up today and begin posting opportunities that require a web developer's expertise. Finding good volunteer technology help can be hard but it doesn't have to be. Get started today!</p>
+  </div>
+  <div class="col-sm-3 col-md-3 text-center">
+    <div class="text-center"><%= image_tag('view.png') %></div>
+    <h3 class="text-center">Developers</h3>
+    <p class="text-center">Browse opportunities to volunteer your time and give back to your community. Don't see a project that fits your background? Sign up today and create a profile so that a nonprofit can find you.</p>
+  </div>
 </div>
 
 <% content_for :extra_footer do %>
   <script type="text/javascript">
-    $("#center-stage").fadeIn("slow");
+    $("#center-stage").fadeIn(1500);
+    $("#center-goal").fadeIn(2000);
   </script>
 <% end  %>
