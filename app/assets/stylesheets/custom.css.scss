@@ -205,3 +205,19 @@ a {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
 }
 
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: black;
+  border-radius: 1px;
+}
+
+.navbar-inverse .navbar-toggle:hover {
+  background-color: $grayish;
+  border-radius: 1px;
+}
+
+.delete-opp-btn {
+  margin-top: 0.5em;
+  width: 183px;
+}
+
+
