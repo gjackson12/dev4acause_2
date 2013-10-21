@@ -2,14 +2,18 @@
 $aquaish: #4183c4;
 $grayish: #eaeaea;
 
+// Custom Fonts
+$abel-font: 'Abel', sans-serif;
+$ubuntu-font: 'Ubuntu', sans-serif;
+
 abbr, accronym{ border-bottom: 0px !important; } 
 
 body {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: $ubuntu-font
 }
 
 h1,h2,h3,h4 {
-  font-family: 'Abel', sans-serif;
+  font-family: $abel-font
 }
 
 .alert {
@@ -81,7 +85,7 @@ a {
 }
 
 .navbar-brand {
-  font-family: 'Abel', sans-serif;
+  font-family: $abel-font;
   font-size:2.0em;
 }
 
@@ -205,3 +209,29 @@ a {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
 }
 
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: black;
+  border-radius: 1px;
+}
+
+.navbar-inverse .navbar-toggle:hover {
+  background-color: $grayish;
+  border-radius: 1px;
+}
+
+.delete-opp-btn {
+  margin-top: 0.5em;
+  width: 183px;
+}
+
+.form-btns {
+  margin-bottom: 1em;
+}
+
+.profile-details {
+  padding-top: 0.4em;
+}
+
+.sample {
+  margin-bottom: 0.5em;
+}

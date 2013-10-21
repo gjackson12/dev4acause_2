@@ -86,11 +86,12 @@
   </div>
   <div class="col-md-2">
     <% if user_signed_in? %>
+
       <% if @opportunity.nonprofit.user == current_user %>
         <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Opportunity", edit_nonprofit_opportunity_path(@opportunity.nonprofit,@opportunity), :class =>  "btn btn-default" %>
       <% end %>
        <% if @opportunity.nonprofit.user == current_user %>
-        <%= link_to raw('<i class="glyphicon glyphicon-remove"></i>') + " Delete Opportunity",nonprofit_opportunity_path(@opportunity.nonprofit, @opportunity), method: :delete, data: { confirm: 'Are you sure?' } , :class =>  "btn btn-default" %>
+        <%= link_to raw('<i class="glyphicon glyphicon-remove"></i>') + " Delete Opportunity",nonprofit_opportunity_path(@opportunity.nonprofit, @opportunity), method: :delete, data: { confirm: 'Are you sure?' } , :class =>  "btn btn-default delete-opp-btn" %>
       <% end %>
     <% end %>
   </div>
