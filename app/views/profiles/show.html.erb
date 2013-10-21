@@ -5,15 +5,15 @@
     </div>
     <h3><%= "#{@profile.first_name} #{@profile.last_name}" %></h3>
     <div id="key-details">
-        <p>
+        <p class="profile-details">
           <span class="glyphicon glyphicon-globe"></span>
           <%= " #{@profile.city}, #{@profile.state}" %>
         </p>
-        <p>
+        <p class="profile-details">
           <span class="glyphicon glyphicon-envelope"></span>
           <%= link_to " #{@profile.email}", "mailto:#{@profile.email}" %>
         </p>
-        <p>
+        <p class="profile-details">
           <span class="glyphicon glyphicon-time"></span>
           <span> Joined on,</span>
           <%= " #{@profile.date_formatter(@profile.created_at)}" %>

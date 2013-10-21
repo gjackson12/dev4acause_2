@@ -11,6 +11,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <h1>Browse People</h1>
+    <h4><%=  pluralize(@profiles.length, 'result') %></h4>
     <%= paginate @profiles %>
     <% @profiles.each do |profile| %>
       <div class="search-result-container">

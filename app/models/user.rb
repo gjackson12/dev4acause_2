@@ -51,11 +51,15 @@ class User < ActiveRecord::Base
   end
 
   def self.location_cleaner(fb_location)
-    fb_location.split(/, /)
+    if fb_location.present?
+      fb_location.split(/, /)
+    else
+      return ['Washington', 'District of Columbia']
+    end
   end
 
   def self.search(query, state = nil)
-    results = where("to_tsvector(coalesce(state, '') || ' ' || coalesce(about_me,'') || ' ' || coalesce(city, '')) @@ plainto_tsquery(?)", query)
+    results = joins('left outer join user_skills us on users.id = us.user_id join skills s on s.id = us.skill_id').where("to_tsvector(coalesce(users.state, '') || ' ' || coalesce(users.about_me,'') || ' ' || coalesce(users.city, '') || ' ' || coalesce(s.name, '')) @@ plainto_tsquery(?)", query).select("distinct users.id, users.*")
   end
 
 end

@@ -5,12 +5,12 @@
     </div>
     <h3><%= @nonprofit.name %></h3>
     <div id="key-details">
-      <p>
+      <p class="profile-details">
         <span class="glyphicon glyphicon-flag"></span>
         <span>The Cause:</span>
           <%= @nonprofit.cause %>
       </p>
-      <p>
+      <p class="profile-details">
         <span class="glyphicon glyphicon-time"></span>
         <span> Joined on,</span>
         <%= " #{date_formatter(@nonprofit.created_at)}" %>
