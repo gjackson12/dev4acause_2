@@ -22,16 +22,18 @@
   </div>
 
   <div class="col-md-5">
-     <div class="profile-btns">
+    <div class="sample">
       <% if view_user == current_user %>
         <%= link_to raw('<i class="glyphicon glyphicon-pencil"></i>') + " Edit Your Profile", edit_profile_path(current_user), :class =>  "btn btn-default" %>
         <%= link_to raw('<i class="glyphicon glyphicon-plus"></i>') + " Create a Nonprofit", new_nonprofit_path, :class =>  "btn btn-default" %>
       <% end %>
     </div>
-
     <ul id="myTab" class="nav nav-tabs">
       <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
       <li ><a href="#nonprofits" data-toggle="tab">My Nonprofits</a></li>
+       <% if view_user == current_user %>
+        <li ><a href="#recommended-opportunities" data-toggle="tab">Recommended Opportunities</a></li>
+       <% end %>
     </ul>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane fade in active" id="profile">
@@ -99,9 +101,41 @@
         </div>
       </div>
 
+
       <div class="tab-pane fade" id="nonprofits">
         <%= render "profiles/users_nonprofits", profile: @profile %>
       </div>
+
+        <% if view_user == current_user %>
+        <div class="tab-pane fade" id="recommended-opportunities">
+          <table class="table table-striped">
+            <thead class="table-head">
+              <tr>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Details</td>
+              </tr>
+            </thead>
+            <tbody>
+              <% if current_user.skills.present? %>
+                <% current_user.skills.reduce([]) { |opps, skill| opps + skill.opportunities }.uniq.take(5).each do |opportunity| %>
+                <tr>
+                  <td><%= opportunity.headline %></td>
+                  <td><%= opportunity.description %></td>
+                  <td><%= link_to "View", opportunity_path(opportunity) %></td>
+                </tr>
+                <% end %>
+              <% else %>
+                <p>
+                  <td>You have no recommended opportunities.</td>
+                  <td></td>
+                  <td></td>
+                </p>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% end %>
 
     </div>
   </div>

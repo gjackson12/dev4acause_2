@@ -235,3 +235,9 @@ a {
 .sample {
   margin-bottom: 0.5em;
 }
+
+.navbar-inverse .navbar-brand {
+  &:hover {
+    color:black;
+  }
+}
