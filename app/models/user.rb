@@ -62,4 +62,8 @@ class User < ActiveRecord::Base
     results = joins('left outer join user_skills us on users.id = us.user_id join skills s on s.id = us.skill_id').where("to_tsvector(coalesce(users.state, '') || ' ' || coalesce(users.about_me,'') || ' ' || coalesce(users.city, '') || ' ' || coalesce(s.name, '')) @@ plainto_tsquery(?)", query).select("distinct users.id, users.*")
   end
 
+  def recommended_opportunities
+    self.skills.reduce([]) {|opps, skill| opps + skill.opportunities }.uniq.take(5)
+  end
+
 end

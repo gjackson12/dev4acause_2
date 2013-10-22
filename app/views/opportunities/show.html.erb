@@ -15,12 +15,12 @@
             <dt class="about-me-labels">Current Technology Stack</dt>
             <dd><%= @opportunity.current_stack %></dd>
 
-            <% if @opportunity.skills.present? %>
-              <dt class="about-me-labels">Preferred Skills</dt>
-              <% @opportunity.skills.each do |skill| %>
-                  <span><%= skill.name %></span>
-              <%- end -%>
-            <% end %>
+            <dt class="about-me-labels">Skills</dt>
+              <% unless @opportunity.skills.empty? %> 
+                <%= @opportunity.skills.map(&:name).join(', ') %>
+              <% else %>
+                <p>No information available.</p>
+              <% end %>
 
             <dt class="about-me-labels">How to apply</dt>
             <dd><%= @opportunity.application_info %></dd>

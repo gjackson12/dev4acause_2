@@ -11,7 +11,7 @@
       <% profile.nonprofits.each do |nonprofit| %>
       <tr>
         <td><%= nonprofit.name %></td>
-        <td><%= nonprofit.description_mission %></td>
+        <td><%= nonprofit.description_mission[0..250].gsub(/\s\w+$/,'...') %></td>
         <td><%= link_to "View", nonprofit_path(nonprofit) %></td>
       </tr>
       <% end %>

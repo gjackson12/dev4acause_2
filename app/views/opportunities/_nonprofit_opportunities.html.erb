@@ -11,7 +11,7 @@
       <% nonprofit.opportunities.each do |opportunity| %>
       <tr>
         <td><%= opportunity.headline %></td>
-        <td><%= opportunity.description %></td>
+        <td><%= opportunity.description[0..250].gsub(/\s\w+$/,'...') %></td>
         <td><%= link_to "View", opportunity_path(opportunity) %></td>
       </tr>
       <% end %>
