@@ -6,7 +6,7 @@ What is it?
 
 Dev4aCause is an application (very much a work in progress) that I built during my last 3 weeks at Launch Academy. The purpose of Dev4aCause is to connect community conscious web developers with nonprofits. 
 
-How to use it?
+How do I use it?
 ---------------
 
 * Fork and clone
