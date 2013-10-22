@@ -9,7 +9,25 @@
 skills = [
   "Java", 
   "Ruby", 
-  "C++"
+  "C++",
+  "Lysp",
+  "UI Design",
+  "UX",
+  "Perl",
+  "HTML5",
+  "Erlang",
+  "Javascript",
+  "jQuery",
+  "Smalltalk",
+  "DevOps",
+  "Chef",
+  "Angular",
+  "Node.js",
+  "Backbone.js",
+  "TDD",
+  "Ember",
+  "PostgreSQL",
+  "MySQL"
 ]
 
 #Populate Skills Table

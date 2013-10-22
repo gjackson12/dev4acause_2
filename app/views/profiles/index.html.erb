@@ -27,7 +27,7 @@
               <%= profile.skills.map(&:name).join(', ') %>
             <%- end -%>
             <% if profile.about_me.present? %>
-              <p><%= profile.about_me.gsub(/\s\w+$/,'...') %></p>
+              <p><%= profile.about_me[0..250].gsub(/\s\w+$/,'...') %></p>
             <% end %>
           </div>
         </div>
