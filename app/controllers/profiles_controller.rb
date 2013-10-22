@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
     if params[:q].present?
       @profiles = User.search(params[:q]).page(params[:page]).per(10)
     else  
-      @profiles = User.all.page(params[:page]).per(10)
+      @profiles = User.all.page(params[:page]).per(10).order("state ASC")
     end 
   end
 

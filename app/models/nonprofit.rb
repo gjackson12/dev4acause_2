@@ -34,6 +34,6 @@ class Nonprofit < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   def self.search(query, state = nil)
-    results = where("to_tsvector(coalesce(name, '') || ' ' || coalesce(description_mission,'') || ' ' || coalesce(city, '') || ' ' || coalesce(mission, '')) @@ plainto_tsquery(?)", query)
+    results = where("to_tsvector(coalesce(name, '') || ' ' || coalesce(description_mission,'') || ' ' || coalesce(city, '') || ' ' || coalesce(mission, '') || ' ' || coalesce(cause, '')) @@ plainto_tsquery(?)", query)
   end
 end
