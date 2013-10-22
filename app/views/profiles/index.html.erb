@@ -22,8 +22,8 @@
           </div>
           <div class="media-body">
             <h4 class="media-heading"><%= link_to "#{profile.first_name} #{ profile.last_name}", profile_path(profile) %></h4>
-            Skills:
             <% if profile.skills.present? %>
+            Skills:
               <%= profile.skills.map(&:name).join(', ') %>
             <%- end -%>
             <% if profile.about_me.present? %>
