@@ -15,7 +15,7 @@ feature 'user searches for opportunities', %q{
     expect(page).to have_content('yak shaver')
     expect(page).to have_content('banana farmer') 
 
-    fill_in 'Search', with: 'bananas'
+    fill_in 'Search Opportunities', with: 'bananas'
     click_button 'Search Opportunities'
 
     expect(page).to have_content('banana farmer')

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div class="text-center">
-    <%= form_tag(profiles_path, method: :get, class: "form-group" ) do %>         <%= text_field_tag :q, '', type: "text", class: 'form-control search-input', placeholder: "Enter a Keyword" %>
+    <%= form_tag(profiles_path, method: :get, class: "form-group" ) do %>         <%= text_field_tag :q, '', type: "text", class: 'form-control search-input', placeholder: "Enter a Keyword (Ruby, Washington)" %>
       <%= submit_tag("Search for People", class: "btn btn-primary") %>
     <% end %>
   </div>

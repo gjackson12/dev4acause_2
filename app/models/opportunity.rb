@@ -19,7 +19,7 @@ class Opportunity < ActiveRecord::Base
     in: State::STATES, allow_blank:true
 
   def self.search(query, state = nil)
-    results = joins('left outer join opportunity_skills os on opportunities.id = os.opportunity_id join skills s on s.id = os.skill_id').where("to_tsvector(coalesce(opportunities.description, '') || ' ' || coalesce(opportunities.headline,'') || ' ' || coalesce(opportunities.extra_details, '') || ' ' || coalesce(s.name, '')) @@ plainto_tsquery(?)", query).select("distinct opportunities.id, opportunities.*")
+    results = joins('left outer join opportunity_skills os on opportunities.id = os.opportunity_id join skills s on s.id = os.skill_id').where("to_tsvector(coalesce(opportunities.description, '') || ' ' || coalesce(opportunities.headline,'') || ' ' || coalesce(opportunities.state, '') || ' ' || coalesce(s.name, '')) @@ plainto_tsquery(?)", query).select("distinct opportunities.id, opportunities.*")
   end
 
   def self.createable_by(user,nonprofit)
